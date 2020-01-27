@@ -5,31 +5,27 @@ $controller='/';
 if($uri !== "/"){
 
     $positionSlash=(strpos($uri,"/",1)=== false)? strlen($uri) : strpos($uri,"/",6);
+    var_dump($positionSlash);
     
 
     $controller=substr( $uri, 0, $positionSlash);
-    
+    var_dump($controller);
 
 }
 
 switch ($controller) {
     case '/':
-    require_once 'controller/defaultController.php';
+    require_once 'core/Controller.php';
         break;
-    case "/films":
-    require_once 'controller/filmsController.php';
+    case "/user":
+    require_once 'controllers/voteController.php';
         break;
-    case "/genres":
-        require_once 'controller/genresController.php';
+    case "/admin":
+    require_once 'controllers/adminController.php';
         break;
-    case "/realisateurs":
-        require_once 'controller/realisateursController.php';
-        break;
+ 
     default:
-        require_once 'view/page404.html.php';
+        require_once 'views/page404.html.php';
         
 }
-
-
-
 ?>
