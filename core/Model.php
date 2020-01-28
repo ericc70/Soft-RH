@@ -7,7 +7,7 @@ abstract class Model{
     //information de basse de donnees
 
     private $host="localhost";
-    private $db_name="sofrh";
+    private $db_name="softrh";
     private $username="root";
     private $password="toor";
 
@@ -22,6 +22,7 @@ abstract class Model{
     public function getConnection(){
         $this->_connexion =null;
 
+       
         try{
             $this->_connexion = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->_connexion->exec("set names utf8");
