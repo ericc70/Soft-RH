@@ -2,29 +2,36 @@
 
 
 
-abstract class Controller{
+abstract class Controller
+{
 
 
-public function loadModel(string $model){
+    public function loadModel(string $model)
+    {
 
-    require_once(ROOT.'models/'. $model.'.php');
-    $this->$model = new $model();
-}
+        require_once(ROOT . 'models/' . $model . '.php');
+        $this->$model = new $model();
+    }
 
-public function render(string $fichier, array $data=[]){
-    extract($data);
-
-    
-//twig a installer ici
+    public function render(string $fichier, array $data = [])
+    {
+        extract($data);
 
 
-    //on demare le buffer
-    // ob_start();
+        //twig a installer ici
+        require_once '/path/to/vendor/autoload.php';
 
-    // require_once(ROOT. 'views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
+        $loader = new \Twig\Loader\FilesystemLoader('/path/to/templates');
+        $twig = new \Twig\Environment($loader, [
+            'cache' => '/path/to/compilation_cache',
+        ]);
 
-    // $content = ob_get_clean();
-    // require_once(ROOT.'views/layouts/default.php');
-}
+        //on demare le buffer
+        // ob_start();
 
+        // require_once(ROOT. 'views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
+
+        // $content = ob_get_clean();
+        // require_once(ROOT.'views/layouts/default.php');
+    }
 }
