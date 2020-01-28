@@ -4,7 +4,7 @@
 
 abstract class Controller
 {
-
+    private $twig;
 
     public function loadModel(string $model)
     {
@@ -13,25 +13,33 @@ abstract class Controller
         $this->$model = new $model();
     }
 
-    public function render(string $fichier, array $data = [])
+    public function render($filename, $data = [])
     {
-        extract($data);
+        // extract($data);
 
 
         //twig a installer ici
-        require_once '/path/to/vendor/autoload.php';
 
-        $loader = new \Twig\Loader\FilesystemLoader('/path/to/templates');
+        require_once(ROOT . '/vendor/autoload.php');
+
+        $loader = new \Twig\Loader\FilesystemLoader('views/');
         $twig = new \Twig\Environment($loader, [
-            'cache' => '/path/to/compilation_cache',
+            'cache' => false
         ]);
+        
 
-        //on demare le buffer
-        // ob_start();
+        // On charge notre vue
+        $view =$twig->load($filename);
+        
 
-        // require_once(ROOT. 'views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
+        // On récupère le contenu de la vue en lui passant nos données pour que la vue puisse les exploiter
+        $content= $view->render($data);
+        var_dump($data);
+        echo $content;
 
-        // $content = ob_get_clean();
-        // require_once(ROOT.'views/layouts/default.php');
+        // return new voteController($content);
     }
+
+    // $content = ob_get_clean();
+    // require_once(ROOT.'views/layouts/default.php');
 }

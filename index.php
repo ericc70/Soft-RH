@@ -21,9 +21,17 @@ switch ($params[0]) {
   echo "defaultcontroller";
         break;
     case "user":
+
+
         echo "user";
     require_once 'controllers/voteController.php';
+        $vote = new voteController();
+        $vote->vote();
     //view formulaire 
+
+
+
+
         break;
     case "admin":
         echo "admin";

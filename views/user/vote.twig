@@ -1,0 +1,19 @@
+<h1>Fichier twig vote</h1>
+
+<h2>test</h2>
+	
+	<p>Mon nom est:
+		{{ name }}
+	</p>
+	<p>Mon age est :
+		{{ age }}
+	</p>
+	<ul>
+		{% for techno in technos %}
+			<li>
+				techno
+				{{ loop.index }}:{{ techno }}
+			</li>
+		{% endfor %}
+	</ul>
+
