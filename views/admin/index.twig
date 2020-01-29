@@ -1,1 +1,10 @@
-index admin 
+<h1>Admin index</h1>
+{% if session.role == 1 %}
+{{session.nom }}
+ <a href='logout'>deconnection</a>
+<a href='admin/resultat/day'>get by day</a>
+{% endif %}
+
+
+
+
