@@ -1,5 +1,5 @@
 <?php
-
+ session_start();
 // $uri=$_SERVER["REQUEST_URI"];
 // $controller='/';
 
@@ -21,6 +21,12 @@ require_once(ROOT.'core/Controller.php');
 require_once(ROOT.'/vendor/autoload.php');
 
 
+require_once 'controllers/utilisateurController.php';
+$user = new utilisateurController;
+require_once 'controllers/historiqueController.php';
+$historique = new historiqueController;
+require_once 'controllers/voteController.php';
+$vote = new voteController;
 
 
 // On sépare les paramètres et on les met dans le tableau $params
@@ -31,14 +37,17 @@ $params = explode('/', $_GET['p']);
 }
 
 
+
+
 switch ($params[0]) {
          case '':
         case'/':
         //login 
-    require_once 'controllers/utilisateurController.php';
-  echo "defaultcontroller";
-            $login=new utilisateurController();
-            $login->login();
+  
+        echo "defaultcontroller";
+
+        $vote->getByDay();
+            $user->login();
 
 
 
@@ -47,19 +56,44 @@ switch ($params[0]) {
 
 
         echo "user";
-    require_once 'controllers/voteController.php';
-        $vote = new voteController();
-       $vote->vote();
-    //view formulaire 
+        
+        if($user->islogin() && $user->isUser()){
 
+            $historique->hasVote($_SESSION['id'] ,$date);
+        require_once 'controllers/voteController.php';
+        //include dans controleur historique ?
+       //    $vote = new voteController();
+       //   $vote->vote();
+       //     //view formulaire 
+       if (!isset($params[1])){
+        $params[1] ='/';
+    }
+    switch($params[1]){
+        case 'index':
+            echo"page index user";
+        break;
+        case 'add':
+            //ajout du vote
+            //formulaire
+        break;
+    default:
+    }
 
+        }
+        else{
+            echo "login ou acces interdit";
+
+        }
 
 
         break;
     case "admin":
-        echo "admin";
+      
 
-        require_once 'controllers/voteController.php';
+        if($user->islogin() && $user->isAdmin()){
+
+
+        //require_once 'controllers/voteController.php';
 
        if (!isset($params[1])){
            $params[1] ='/';
@@ -67,6 +101,9 @@ switch ($params[0]) {
 
 
         switch($params[1]){
+            case 'index':
+            echo"page index admin";
+            break;
             case 'jour':
 
             echo "resultat du jour";
@@ -80,9 +117,15 @@ switch ($params[0]) {
 
         }
 
+        }
+        else{echo"login";}
+
+
         //view resultat
         break;
-    
+    case "logout":
+        $user->logout();
+    break;
     default:
        // require_once 'view/page404.html.php';
        echo "404";

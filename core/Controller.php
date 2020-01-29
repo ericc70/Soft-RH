@@ -2,7 +2,7 @@
 
 
 abstract class Controller{
-    private $twig;
+    protected $twig;
 
 public function loadModel(string $model){
 
