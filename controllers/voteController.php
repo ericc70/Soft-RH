@@ -1,6 +1,7 @@
 <?php
 
 
+
 class voteController extends Controller{
 
 
@@ -16,7 +17,7 @@ class voteController extends Controller{
 
 
         ];
-        return $this->render('user/vote.twig',
+     return   $this->render("user/vote.twig",
         [
             'name' => $name,
             'age' => $age,

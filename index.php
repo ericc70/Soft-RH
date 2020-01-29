@@ -5,6 +5,11 @@ define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
 // On appelle le modèle et le contrôleur principaux
 require_once(ROOT.'core/Model.php');
 require_once(ROOT.'core/Controller.php');
+require_once(ROOT.'/vendor/autoload.php');
+
+
+
+
 // On sépare les paramètres et on les met dans le tableau $params
 if (isset($_GET['p'])){
 $params = explode('/', $_GET['p']);
@@ -17,8 +22,13 @@ switch ($params[0]) {
          case '':
         case'/':
         //login 
-  //  require_once 'controllers/defaultController.php';
+    require_once 'controllers/utilisateurController.php';
   echo "defaultcontroller";
+            $login=new utilisateurController();
+            $login->login();
+
+
+
         break;
     case "user":
 
@@ -26,7 +36,7 @@ switch ($params[0]) {
         echo "user";
     require_once 'controllers/voteController.php';
         $vote = new voteController();
-        $vote->vote();
+       $vote->vote();
     //view formulaire 
 
 
