@@ -3,24 +3,33 @@
 class voteController extends Controller
 {
 
-  public function getByDay()
+  public function getByDay($day)
   {
 
     $this->loadModel('vote');
-    $vote = $this->vote->getByDay();
+    $vote = $this->vote->getByDay($day);
   }
 
-  public function getByMonth()
+  public function getByMonth($month)
   {
 
     $this->loadModel('vote');
-    $vote = $this->vote->getByMonth();
+    $vote = $this->vote->getByMonth($month);
   }
 
-  public function getByYear()
+  public function getByYear($year)
   {
 
     $this->loadModel('vote');
-    $vote = $this->vote->getByYear();
+    $vote = $this->vote->getByYear($year);
   }
+
+
+  public function add($day , $departement, $humeur)
+  {
+
+    $this->loadModel('vote');
+    $vote = $this->vote->add($day , $departement, $humeur);
+  }
+
 }

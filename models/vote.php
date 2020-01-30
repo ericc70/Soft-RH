@@ -108,7 +108,7 @@ class vote extends Model
     public function getByYear($year = '')
     {
         if ($year == '') {
-            $year = date('2020-%-%');
+            $year = date('Y%');
         }
         $sql = "SELECT substr(date,1,4), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :year GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
@@ -154,7 +154,14 @@ class vote extends Model
 
 
 
-    public function add()
+    public function add($day , $departement, $humeur)
     {
+        $sql="INSERT INTO `vote` (`date`, `departement_id`, `humeur_id`) VALUES ( :day, :departement, :humeur);";
+        $query =  $this->_connexion->prepare($sql);
+        $query->bindParam(':day', $day, PDO::PARAM_STR);
+        $query->bindParam(':departement', $departement, PDO::PARAM_INT);
+        $query->bindParam(':humeur', $humeur, PDO::PARAM_INT);
+        $query->execute();
+        
     }
 }
