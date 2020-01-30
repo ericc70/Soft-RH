@@ -3,18 +3,16 @@
 class utilisateurController extends Controller{
 
 
-    public function login(){
+    public function formLogin(){
+
+        $this->render("login/index.twig");
+
+    }
+
+    public function login($name, $passwd){
         
-        //recuper $_POST
-       // if (isset($_POST['name']) && isset($_POST['passwd'])){
-          //  $name = strip_tags($_POST['name']);
-           // $passwd = md5($_POST['passwd']);
-                                $name="hhh";
-                                $passwd="hhhh";
-
-
             $this->loadModel('utilisateur');
-            $utilisateur=$this->utilisateur->login($name, $passwd);
+            $utilisateur=$this->utilisateur->login($name, md5($passwd));
 
         
             if ($utilisateur == false){
@@ -24,16 +22,13 @@ class utilisateurController extends Controller{
                     'erreur' => $err
                 ]); 
 
-              
             }
             else{
-
-                   
+   
                     $_SESSION['id'] = (int)$utilisateur['id'];
                     $_SESSION['nom'] = $utilisateur['nom'];
                     $_SESSION['prenom'] = $utilisateur['prenom'];
                     $_SESSION['role'] = $utilisateur['role'];
-                  
 
             }
 
@@ -41,35 +36,23 @@ class utilisateurController extends Controller{
                 if($utilisateur['role'] == 1) //admin
                 {
                 
-                       $this->render("admin/index.twig",[
-                         'session' => $_SESSION,
-
-                     ]); 
-                        // header('Location: admin/index');
+                         header('Location: admin/index');
                 }
                 if($utilisateur['role'] == 2) //user
                 {
-                       $this->render("user/vote.twig",[
-
-                    ]);
-                 //   header('Location: user');
+                     header('Location: vote/index');
                 }
 
 
-
-        
-       // }
     }
-
-        public function isLogin(){
+    public function isLogin(){
 
             if(isset($_SESSION['role']) && isset($_SESSION['nom']) && isset($_SESSION['id'] ) && isset($_SESSION['prenom'])){
 
                 return true;
             }
 
-
-        }
+ }
 
         public function isAdmin(){
             
@@ -90,6 +73,8 @@ class utilisateurController extends Controller{
     public function logout(){
         //session destroy
         session_destroy();
+       // $this->render("login/index.twig");
+     
     }
 
 

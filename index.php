@@ -1,5 +1,6 @@
 <?php
  session_start();
+ echo md5(123);
 // $uri=$_SERVER["REQUEST_URI"];
 // $controller='/';
 
@@ -44,23 +45,17 @@ switch ($params[0]) {
         case'/':
         //login 
   
-        echo "defaultcontroller";
-
-        $vote->getByDay();
-            $user->login();
-
-
+        $user->formLogin();
 
         break;
-    case "user":
+    case "vote":
 
 
-        echo "user";
         
         if($user->islogin() && $user->isUser()){
 
-            $historique->hasVote($_SESSION['id'] ,$date);
-        require_once 'controllers/voteController.php';
+     //       $historique->hasVote($_SESSION['id'] ,$date);
+       // require_once 'controllers/voteController.php';
         //include dans controleur historique ?
        //    $vote = new voteController();
        //   $vote->vote();
@@ -70,9 +65,12 @@ switch ($params[0]) {
     }
     switch($params[1]){
         case 'index':
-            echo"page index user";
+            $date = date('Y-m-d');
+            $historique->hasVote($_SESSION['id'] ,$date);
+           
         break;
         case 'add':
+            $vote->add();
             //ajout du vote
             //formulaire
         break;
@@ -102,7 +100,11 @@ switch ($params[0]) {
 
         switch($params[1]){
             case 'index':
-            echo"page index admin";
+                $user->render("admin/index.twig",[
+                    'session' => $_SESSION,
+
+                 ]); 
+                
             break;
             case 'jour':
 
@@ -125,6 +127,21 @@ switch ($params[0]) {
         break;
     case "logout":
         $user->logout();
+        header('Location: login');
+    break;
+
+    case "login":
+     //  var_dump($_POST);
+       if(!isset($_POST['inptName']) && !isset($_POST['passwd'])){
+        $user->formLogin();
+}
+        if(isset($_POST['inptName']) && isset($_POST['passwd'])){
+
+            $name=strip_tags($_POST['inptName']);
+            $passwd = $_POST['passwd'];
+             $user->login($name,  $passwd );
+        }
+        
     break;
     default:
        // require_once 'view/page404.html.php';
