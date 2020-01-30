@@ -101,7 +101,7 @@ class vote extends Model
         //    var_dump($result);
 
 
-        var_dump($json);
+        //var_dump($json);
     }
 
 
@@ -149,7 +149,7 @@ class vote extends Model
         //    var_dump($result);
 
 
-        var_dump($json);
+        //var_dump($json);
     }
 
 
