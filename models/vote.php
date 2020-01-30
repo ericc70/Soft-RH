@@ -1,4 +1,6 @@
 <?php
+
+
         
 class vote extends Model
 {
@@ -51,17 +53,21 @@ class vote extends Model
         }
 
         $json = json_encode($retour);
-           var_dump($json);
+        //    var_dump($json);
 
 
         
     }
 
-    public function getByMonth($month)
+    public function getByMonth($month='')
     {
+        if ($month =='') {
+            $month=date('Y-m-%');
 
-        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE substr(date,6,2) = 01 and substr(date,1,4)= 2020 GROUP BY departement_id";
+        }
+        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :month'%' GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
+        $query->bindParam(':month', $month, PDO::PARAM_STR);
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         $retour = [];
