@@ -1,7 +1,5 @@
 <?php
 
-
-        
 class vote extends Model
 {
 
@@ -12,10 +10,10 @@ class vote extends Model
         $this->getConnection();
     }
 
-    public function getByDay($day='')
+    public function getByDay($day = '')
     {
-        if ($day =='') {
-            $day=date('Y-m-d');
+        if ($day == '') {
+            $day = date('Y-m-d');
         }
         $sql = "SELECT month(date), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date =:day GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
@@ -56,16 +54,15 @@ class vote extends Model
         //    var_dump($json);
 
 
-        
+
     }
 
-    public function getByMonth($month='')
+    public function getByMonth($month = '')
     {
-        if ($month =='') {
-            $month=date('Y-m-%');
-
+        if ($month == '') {
+            $month = date('Y-m-%');
         }
-        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :month'%' GROUP BY departement_id";
+        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :month GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
         $query->bindParam(':month', $month, PDO::PARAM_STR);
         $query->execute();
@@ -106,12 +103,16 @@ class vote extends Model
 
         var_dump($json);
     }
-    
 
-    public function getByYear($year)
+
+    public function getByYear($year = '')
     {
-        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date = GROUP BY departement_id";
+        if ($year == '') {
+            $year = date('2020-%-%');
+        }
+        $sql = "SELECT substr(date,1,4), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :year GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
+        $query->bindParam(':year', $year, PDO::PARAM_STR);
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         $retour = [];
@@ -150,7 +151,7 @@ class vote extends Model
 
         var_dump($json);
     }
-    
+
 
 
     public function add()

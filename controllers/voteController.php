@@ -1,20 +1,26 @@
 <?php
 
+class voteController extends Controller
+{
 
+  public function getByDay()
+  {
 
-class voteController extends Controller{
+    $this->loadModel('vote');
+    $vote = $this->vote->getByDay();
+  }
 
-public function getByDay(){
+  public function getByMonth()
+  {
 
-  $this->loadModel('vote');
-    $vote=$this->vote->getByDay();
-}
-public function getByMonth(){
+    $this->loadModel('vote');
+    $vote = $this->vote->getByMonth();
+  }
 
-  $this->loadModel('vote');
-    $vote=$this->vote->getByMonth();
-}
-    
-    
-    
+  public function getByYear()
+  {
+
+    $this->loadModel('vote');
+    $vote = $this->vote->getByYear();
+  }
 }
