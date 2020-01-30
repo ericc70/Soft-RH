@@ -9,16 +9,13 @@ class historique extends Model{
     }
 
     public function hasVote($idUser, $date){
-        $sql ="SELECT count(id)as nb FROM". $this->table." WHERE utilisateur_id=:id AND `date`=:date";
+        $sql ="SELECT count(id) as nb FROM historique WHERE utilisateur_id=:id AND `date`=:date";
         $query = $this->_connexion->prepare($sql);
         $query->bindParam(':id', $idUser, PDO::PARAM_INT);
-        $query->bindValue(':date', $date);
+        $query->bindParam(':date', $date,  PDO::PARAM_STR);
         $query->execute();  
        $result = $query->fetch(PDO::FETCH_ASSOC);
-
-       if($result['nb']==0){return false;}
-        if($result['nb']==1){return true;}
-
+        return $result;
 
     }
 

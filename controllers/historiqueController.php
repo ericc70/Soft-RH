@@ -1,27 +1,33 @@
 <?php
 
+
+
 class historiqueController extends Controller{
 
-    public function hasVote($idUser, $date){
+    public function hasVote( $idUser, $date){
 
 
         $this->loadModel('historique');
-        $historique=$this->historique->hasVote($idUser, $date);
-    //  $etat=(  $historique->hasVote() = true) ? 'deconnection' : 'affiche vote';
+        $historiques=$this->historique->hasVote($idUser, $date);
+   // var_dump($historiques);
+        
 
-        if($historique->hasVote() == true){
+        if($historiques['nb']== 0){
 
+            echo "pas encore voté";
+            //$vote = new voteController(); //??
+            //$vote->add();//??
+            $this->render("vote/vote.twig",[  ]);
+         //   $historique->add();
+        }
+        if($historiques['nb'] == 1){
+            echo "deja voté";
             //deja voter aujourd'hui
+            $this->render("vote/vote-ok.twig",[  ]);
+          //  sleep(5);
+       //     echo "deconnection";
+       
         }
-
-        if($historique->hasVote() == false){
-
-            $vote = new voteController(); //??
-            $vote->add();//??
-
-            $historique->add();
-        }
-
 
     }
 
