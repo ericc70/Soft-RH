@@ -6,7 +6,7 @@ var myChart = new Chart(ctx, {
         datasets: [
             {
             label: 'heureux',
-            data: [0,0,0,0,0,0,10],
+            data: [46,52,5,75,32,45,50],
            
             borderColor: [
                 
@@ -24,13 +24,14 @@ var myChart = new Chart(ctx, {
                 //repère de valeur
             ],
             borderWidth:[
-                3,
+                5,
             ],
+            
 
       
           },{
             label: 'Stressé',
-            data: [0,0,0,0,0,0,10],
+            data: [4,24,53,8,10,25,42],
            
             borderColor: [
                 
@@ -52,7 +53,7 @@ var myChart = new Chart(ctx, {
             ],
         },{
                 label: 'fatigué',
-                data: [0,0,0,0,0,0,10],
+                data: [35,62,4,54,45,3,44],
                
                 borderColor: [
                     
@@ -86,14 +87,23 @@ var myChart = new Chart(ctx, {
         title: {
             display: true,
             text: 'Humeur de la semaine'
+
         },
+        
+        
         scales: {
             yAxes: [{
-                stacked: true,
-
+                stacked: false,
+                
                 ticks: {
+                    fontSize: 25, 
                     beginAtZero: true,
                     type: 'myScale' // this is the same key that was passed to the registerScaleType function
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 25
                 }
             }]
         }
