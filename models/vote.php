@@ -10,9 +10,9 @@ class vote extends Model
         $this->getConnection();
     }
 
-    public function getByDay($day = '')
+    public function getByDay($day)
     {
-        if ($day == '') {
+        if ($day == null) {
             $day = date('Y-m-d');
         }
         $sql = "SELECT month(date), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date =:day GROUP BY departement_id";
@@ -53,18 +53,20 @@ class vote extends Model
         $json = json_encode($retour);
         //    var_dump($json);
 
-
+        return $retour;
 
     }
 
-    public function getByMonth($month = '')
+    public function getByMonth($month )
     {
-        if ($month == '') {
-            $month = date('Y-m-%');
+        if ($month == null) {
+            $m = date('Y-m');
+            $like ='%';
+            $month=$m.$like;
         }
         $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :month GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
-        $query->bindParam(':month', $month, PDO::PARAM_STR);
+        $query->bindParam(':month', $month,  PDO::PARAM_STR);
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         $retour = [];
@@ -87,7 +89,7 @@ class vote extends Model
             }
             $ret = [
                 'departement_id' => $result['departement_id'],
-                'mois' => $result['mois'],
+              //  'mois' => $result['mois'],
                 'nbrVotantParDepartement' => $result['nbrVotantParDepartement'],
                 'humeur1' => $humeur1,
                 'humeur2' => $humeur2,
@@ -100,15 +102,18 @@ class vote extends Model
         $json = json_encode($retour);
         //    var_dump($result);
 
-
+        return $retour;
         //var_dump($json);
     }
 
 
-    public function getByYear($year = '')
+    public function getByYear($year)
     {
-        if ($year == '') {
-            $year = date('Y%');
+        if ($year == null ) {
+            
+            $y = date('Y-m');
+            $like ='%';
+            $year=$y.$like;
         }
         $sql = "SELECT substr(date,1,4), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :year GROUP BY departement_id";
         $query =  $this->_connexion->prepare($sql);
@@ -135,7 +140,7 @@ class vote extends Model
             }
             $ret = [
                 'departement_id' => $result['departement_id'],
-                'mois' => $result['mois'],
+              //  'mois' => $result['mois'],
                 'nbrVotantParDepartement' => $result['nbrVotantParDepartement'],
                 'humeur1' => $humeur1,
                 'humeur2' => $humeur2,

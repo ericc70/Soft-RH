@@ -1,0 +1,5 @@
+<h1>Resultat par day</h1>
+
+{% for result in results %}
+{{ results | json_encode()}}
+{% endfor %}

@@ -4,14 +4,14 @@
 
 class historiqueController extends Controller{
 
-    public function hasVote( $idUser, $date){
+    public function hasVote( $idUser, $date, $location=true){
 
 
         $this->loadModel('historique');
         $historiques=$this->historique->hasVote($idUser, $date);
    // var_dump($historiques);
         
-
+if ($location == true){
         if($historiques['nb']== 0){
 
             echo "pas encore voté";
@@ -28,10 +28,17 @@ class historiqueController extends Controller{
        //     echo "deconnection";
        
         }
-
+    }
+        if($location == false){
+            return $historiques['nb'];
+        }
     }
 
 
-
+public function add($idUser, $date){
+    $this->loadModel('historique');
+    $historiques=$this->historique->add($idUser, $date);
+// var_dump($historiques);
+}
 
 }
