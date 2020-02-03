@@ -1,0 +1,127 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
+	<body>
+
+ {% if results %}
+{{ results | json_encode()}}
+
+{% endif %} 
+
+		<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+			<canvas id="myChart"></canvas>
+		</div>
+
+
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['departement1','departement2'],
+        datasets: [
+            {
+            label: 'heureux',
+            data: ['{{ results.humeur1[0] }}','{{ results.humeur1[1] }}'],
+           
+            borderColor: [
+                
+                'green',
+              
+            ],
+            pointBackgroundColor:[
+                'green',
+                
+              
+                //repère de valeur
+            ],
+            borderWidth:[
+                5,
+            ],
+            
+
+      
+          },{
+            label: 'Stressé',
+            data:  ['{{ results.humeur2[0] }}','{{ results.humeur2[1] }}'],
+           
+            borderColor: [
+                
+                'yellow',
+              
+            ],
+            pointBackgroundColor:[
+                'yellow',
+                
+                //repère de valeur
+            ],
+            borderWidth:[
+                3,
+            ],
+        },{
+                label: 'fatigué',
+                data: ['{{ results.humeur3[0] }}','{{ results.humeur3[1] }}'],
+               
+                borderColor: [
+                    
+                    'red',
+                  
+                ],
+                pointBackgroundColor:[
+                    'red',
+                    
+                    //repère de valeur
+                ],
+                borderWidth:[
+                    3,
+                ],
+
+        
+          }
+        ],
+     
+          
+          
+          
+    },
+    
+    options: {
+        title: {
+            display: true,
+            text: 'Humeur de la semaine'
+
+        },
+        
+        
+        scales: {
+            yAxes: [{
+                stacked: false,
+                
+                ticks: {
+                    fontSize: 25, 
+                    beginAtZero: true,
+                    type: 'myScale' // this is the same key that was passed to the registerScaleType function
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 25
+                }
+            }]
+        }
+    }
+});
+
+        
+        </script>
+	</body>
+</html>

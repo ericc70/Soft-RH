@@ -8,6 +8,12 @@ class voteController extends Controller
 
     $this->loadModel('vote');
     $vote = $this->vote->getByDay($day);
+
+    $this->render('admin\resultat\day.twig',[
+        'results' => $vote,
+       
+    ]);
+ 
   }
 
   public function getByMonth($month)
@@ -15,6 +21,10 @@ class voteController extends Controller
 
     $this->loadModel('vote');
     $vote = $this->vote->getByMonth($month);
+    $this->render('admin\resultat\month.twig',[
+      'results' => $vote,
+     
+  ]);
   }
 
   public function getByYear($year)
@@ -22,6 +32,10 @@ class voteController extends Controller
 
     $this->loadModel('vote');
     $vote = $this->vote->getByYear($year);
+    $this->render('admin\resultat\year.twig',[
+      'results' => $vote,
+     
+  ]);
   }
 
 
