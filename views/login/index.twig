@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="public/css/style.css">
 
     <title>page de connection du site SOFRTH</title>
   </head>
@@ -19,19 +19,27 @@
     <p class='text-center '><img src='../medias/logo.png' alt='image de softRH' width="400" class=" img-fluid" height="65"></p>
     </div>
    </div>
-   <form class="row flex-column offset-md-4 offset-lg-5">
+   <div class="row">
+   <div class="col-12">
+        {% if erreur  %}
+        <p>Our website is in maintenance mode. Please, come back later.</p>
+        {% endif %}
+      
+   </div>
+   </div>
+   <form method='post' action="/login" class="row flex-column offset-md-4 offset-lg-5">
   <div class="form-group">
     <label for="exampleInputEmail1" class="ml-3">Identifiant</label>
-    <input type="text" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4 " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="text" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4 " name="inptName" aria-describedby="emailHelp" placeholder="Enter votre nom">
 
  
     <label for="exampleInputPassword1" class="ml-3">Password</label>
-    <input type="password" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4" name="passwd" placeholder="Password">
   </div>
 
   <button type="submit" class="btn btn-primary border-r-50 col-12 col-sm-12 col-md-6  col-lg-4">Submit</button>
 </form>
-
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
