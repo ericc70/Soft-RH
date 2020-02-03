@@ -1,6 +1,6 @@
 <?php
  session_start();
- echo md5(123);
+ 
 // $uri=$_SERVER["REQUEST_URI"];
 // $controller='/';
 
