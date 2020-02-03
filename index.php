@@ -1,6 +1,6 @@
 <?php
  session_start();
- echo md5(123);
+//  echo md5(123);
 // $uri=$_SERVER["REQUEST_URI"];
 // $controller='/';
 
@@ -34,7 +34,7 @@ $vote = new voteController;
 if (isset($_GET['p'])){
 $params = explode('/', $_GET['p']);
 
-//print_r($params);
+// print_r($params);
 }
 
 
@@ -144,7 +144,6 @@ switch ($params[0]) {
         
     break;
     default:
-       // require_once 'view/page404.html.php';
-       echo "404";
+       require_once 'views/error404.html.twig';
         
 }
