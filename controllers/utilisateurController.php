@@ -30,12 +30,11 @@ class utilisateurController extends Controller{
             //twig
                 if($utilisateur['role'] == 1) //admin
                 {
-                
-                         header('Location: admin/index');
+                    header('Location: admin/index');
                 }
                 if($utilisateur['role'] == 2) //user
                 {
-                     header('Location: vote/index');
+                    header('Location: vote/index');
                 }
 
 
