@@ -1,11 +1,5 @@
 <?php
  session_start();
-<<<<<<< HEAD
-//  echo md5(123);
-// $uri=$_SERVER["REQUEST_URI"];
-// $controller='/';
-=======
->>>>>>> 5809dfafd70ca02ed7444f207212d7d118af1cd4
 
 
 // On génère une constante contenant le chemin vers la racine publique du projet
@@ -150,11 +144,6 @@ if(isset($_POST['inptName']) && isset($_POST['passwd'])){
 } else {   $main->formLogin();}
     break;
     default:
-<<<<<<< HEAD
-       require_once 'views/error404.html.twig';
-        
-=======
        // require_once 'view/page404.html.php';
        $main->notFound();
->>>>>>> 5809dfafd70ca02ed7444f207212d7d118af1cd4
 }
