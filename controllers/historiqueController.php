@@ -14,16 +14,19 @@ class historiqueController extends Controller{
 if ($location == true){
         if($historiques['nb']== 0){
 
-            echo "pas encore voté";
+          //  echo "pas encore voté";
             //$vote = new voteController(); //??
             //$vote->add();//??
             $this->render("vote/vote.twig",[  ]);
          //   $historique->add();
         }
         if($historiques['nb'] == 1){
-            echo "deja voté";
+           // echo "deja voté";
             //deja voter aujourd'hui
-            $this->render("vote/vote-ok.twig",[  ]);
+            $this->render("vote/vote-ok.twig",[  
+
+                
+            ]);
           //  sleep(5);
        //     echo "deconnection";
        
