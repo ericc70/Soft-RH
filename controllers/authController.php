@@ -13,11 +13,11 @@ class authController extends Controller{
 
     public function login($name, $passwd){
         
-        $this->loadModel('utilisateur');
-        $utilisateur=$this->utilisateur->login($name, md5($passwd));
+        $this->loadModel('auth');
+        $auth=$this->auth->login($name, md5($passwd));
 
     
-        if ($utilisateur == false){
+        if ($auth == false){
              $err = "Login ou mot de pass invalide";
                $this->render("login/index.twig",[
 
@@ -27,20 +27,20 @@ class authController extends Controller{
         }
         else{
 
-                $_SESSION['id'] = (int)$utilisateur['id'];
-                $_SESSION['nom'] = $utilisateur['nom'];
-                $_SESSION['prenom'] = $utilisateur['prenom'];
-                $_SESSION['role'] = $utilisateur['role'];
-                $_SESSION['dpt'] = $utilisateur['departement_id'];
+                $_SESSION['id'] = (int)$auth['id'];
+                $_SESSION['nom'] = $auth['nom'];
+                $_SESSION['prenom'] = $auth['prenom'];
+                $_SESSION['role'] = $auth['role'];
+                $_SESSION['dpt'] = $auth['departement_id'];
         }
 
         //twig
-            if($utilisateur['role'] == 1) //admin
+            if($auth['role'] == 1) //admin
             {
             
                      header('Location: admin/index');
             }
-            if($utilisateur['role'] == 2) //user
+            if($auth['role'] == 2) //user
             {
                  header('Location: vote/index');
             }

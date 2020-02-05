@@ -1,5 +1,138 @@
-<h1>Resultat par day</h1>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
+	<body>
 
-{% for result in results %}
+{% if results %}
 {{ results | json_encode()}}
-{% endfor %}
+
+
+{% endif %}
+
+		<div class="chart-container" style="position: relative; height:40vh; width:40vw">
+			 {% for i in 1..4  %}
+                <canvas id="{{i}}"></canvas>       
+            {% endfor %}
+    
+		</div>
+
+
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+
+        
+                for(j=0;j<=10;j++){
+                    // console.log(j);
+                    
+                console.log({{ results.humeur1[j] }} );       
+                    }
+        
+        
+                for(i=1;i<=2;i++){
+
+       
+                    
+        var ctx = document.getElementById(i).getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [`departement ${i}`],
+        datasets: [
+            {
+            label: 'heureux',
+            data: [ {{ results.humeur1[0] }}  ],
+            borderColor: [
+                
+                'green',
+              
+            ],
+            pointBackgroundColor:[
+                'green',
+                
+              
+                //repère de valeur
+            ],
+            borderWidth:[
+                5,
+            ],
+            
+      
+          },{
+            label: 'Fatigué',
+            data:  [{{ results.humeur2[0] }}
+            ],
+           
+            borderColor: [
+                
+                'yellow',
+                "yellow",
+                "yellow",
+              
+            ],
+          
+          
+          
+            borderWidth:[
+                4,
+            ],
+        },{
+                label: 'Stressé',
+                data: ['{{ results.humeur3[0] }}'],
+               
+                borderColor: [
+                    
+                    'red',
+                  
+                ],
+                pointBackgroundColor:[
+                    'red',
+                    
+                    //repère de valeur
+                ],
+                borderWidth:[
+                    3,
+                ],
+        
+          }
+        ],
+     
+          
+          
+          
+    },
+    
+    options: {
+        title: {
+            display: true,
+            text: 'Humeur des departements',
+        },
+        
+        
+        scales: {
+            yAxes: [{
+                stacked: false,
+                
+                ticks: {
+                    fontSize: 25, 
+                    beginAtZero: true,
+                    type: 'myScale' // this is the same key that was passed to the registerScaleType function
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontSize: 25
+                }
+            }]
+        }
+    }
+});
+        }   
+        </script>
+	</body>
+</html>
