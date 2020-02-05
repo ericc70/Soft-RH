@@ -25,7 +25,7 @@ $main = new mainController;
 if (isset($_GET['p'])){
 $params = explode('/', $_GET['p']);
 
-//print_r($params);
+// print_r($params);
 }
 
 
