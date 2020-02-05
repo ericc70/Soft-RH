@@ -12,7 +12,8 @@
 
  {% if results %}
 {{ results | json_encode()}}
-
+{{ results.humeur2 }}
+{{ results.humeur1 }}
 {% endif %} 
 
 		<div class="chart-container" style="position: relative; height:40vh; width:80vw">
@@ -24,6 +25,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script>
         var ctx = document.getElementById('myChart').getContext('2d');
+        console.log();
+        
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -31,6 +34,7 @@ var myChart = new Chart(ctx, {
         datasets: [
             {
             label: 'heureux',
+            
             data: ['{{ results.humeur1[0] }}','{{ results.humeur1[1] }}'],
            
             borderColor: [
