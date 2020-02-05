@@ -1,4 +1,6 @@
-
+body{
+    height: 100vh;
+}
 .border-r-50{
     border-radius:50px;
 }
@@ -29,7 +31,13 @@ button{
     background-size:cover;
     background-position: bottom;
 }
-
+a{
+    color: white;
+}
+.image-fluid{
+    width: 260px;
+    height: 50px;
+}
 @media (max-width: 575.98px) { 
     .img-responsive-sm{
         width: 100px;

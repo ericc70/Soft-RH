@@ -1,13 +1,10 @@
 {% extends "base.twig" %}
 {% block content %}
-{% if results %}
-{{ results| json_encode()}}
 
-{% endif %}
 
-		<div class="chart-container" style="position: relative; height:40vh; width:40vw">
+		<div class="chart-container container-fluid d-flex flex-wrap  " style="position: relative;width=50px">
 			 {% for i in 1..4  %}
-                <canvas id="{{i}}"></canvas>
+                <canvas class="col-6 col-lg-6 mt-5  " id="{{i}}"></canvas>
                 
          
             {% endfor %}
@@ -20,7 +17,7 @@
         <script>
          
          
-        {% for i in 1..3 %}
+        {% for i in 1..4 %}
         // console.log({{i-1}});
     console.log({{ results.humeur1 | json_encode()}});
         
@@ -101,11 +98,6 @@ var myChart = new Chart(ctx, {
     },
     
     options: {
-        title: {
-            display: true,
-            text: 'Humeur des departements',
-
-        },
         
         
         scales: {
@@ -115,11 +107,15 @@ var myChart = new Chart(ctx, {
                 ticks: {
                     fontSize: 25, 
                     beginAtZero: true,
-                    type: 'myScale' // this is the same key that was passed to the registerScaleType function
+                    type: 'myScale' ,
+                     precision:0,
+                     stepSize:1,
+                     beginAtZero:true,
                 }
             }],
             xAxes: [{
                 ticks: {
+                   
                     fontSize: 25
                 }
             }]
