@@ -1,10 +1,25 @@
-<h1>Admin index</h1>
-{% if session.role == 1 %}
-{{session.nom }}
- <a href='../logout'>deconnection</a>
-<a href='resultat/day'>get by day</a>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+	</head>
+	<body>
 
-<h1>nn;,n,;</h1>
+ {% if results %}
+{{ results | json_encode()}}
+
+{% endif %} 
+
+		<div class="chart-container" style="position: relative; height:40vh; width:80vw">
+			<canvas id="myChart"></canvas>
+		</div>
 
 
+
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+		<script src="/public/js/graphique.js"></script>
+	</body>
+</html>

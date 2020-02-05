@@ -25,7 +25,7 @@ $main = new mainController;
 if (isset($_GET['p'])){
 $params = explode('/', $_GET['p']);
 
-//print_r($params);
+// print_r($params);
 }
 
 
@@ -90,7 +90,7 @@ switch ($params[0]) {
             switch($params[1]){
                 case 'index':
                     $user->render("admin/index.twig",['session' => $_SESSION, ]); 
-                    
+                    header('Location: resultat/day' );
                 break;
 
                 case 'resultat':
