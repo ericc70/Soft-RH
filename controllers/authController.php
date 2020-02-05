@@ -110,6 +110,7 @@ class authController extends Controller{
         session_destroy();
 
         header('Location:'.  $redirection);
+        
         }
 
 public function verifLogin($name, $passwd){

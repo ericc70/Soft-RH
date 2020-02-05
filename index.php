@@ -124,7 +124,7 @@ switch ($params[0]) {
             //view resultat
             break;
     case "logout":
-        $auth->logout('login');
+        $auth->logout('login'); 
      
     break;
 
