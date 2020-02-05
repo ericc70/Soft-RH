@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap");
+html:root {
+  --green: #13cd5e;
+  --red: #ff487c;
+  --yellow: #e1d623;
+  --blue: #3f8ae8;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.card {
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  background-color: #28a745;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.btn-40 {
+  border-radius: 40px;
+}
+
+/*# sourceMappingURL=styles.css.map */
