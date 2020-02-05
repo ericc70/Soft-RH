@@ -1,5 +1,9 @@
 <h1>Resultat par day</h1>
 
-{% for result in results %}
+{% if results %}
 {{ results | json_encode()}}
-{% endfor %}
+{{ results.humeur1[0] }}
+{% endif %}
+liste
+
+

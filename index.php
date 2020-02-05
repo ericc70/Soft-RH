@@ -53,7 +53,7 @@ switch ($params[0]) {
 
         case 'index':
          
-            $historique->hasVote($_SESSION['id'] ,date('Y-m-d'));
+            $historique->hasVote($_SESSION['id'] , date('Y-m-d'));
            
         break;
         case 'add':
@@ -78,7 +78,7 @@ switch ($params[0]) {
         case "admin":
       
 
-            if($user->islogin() && $user->isAdmin()){
+            if($auth->islogin() && $auth->isAdmin()){
 
 
 
@@ -124,7 +124,7 @@ switch ($params[0]) {
             //view resultat
             break;
     case "logout":
-        $auth->logout();
+        $auth->logout('login'); 
      
     break;
 
