@@ -27,10 +27,8 @@
         
           
                 // for(i=1;i<=2;i++){
-
                     
         var ctx = document.getElementById({{i}}).getContext('2d');
-
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -39,7 +37,6 @@ var myChart = new Chart(ctx, {
             {
             label: 'heureux',
             data: [{{ results.humeur1[i-1] | json_encode()}}],
-
             borderColor: [
                 
                 'green',
@@ -55,7 +52,6 @@ var myChart = new Chart(ctx, {
                 5,
             ],
             
-
       
           },{
             label: 'Fatigué',
@@ -91,7 +87,6 @@ var myChart = new Chart(ctx, {
                 borderWidth:[
                     3,
                 ],
-
         
           }
         ],
@@ -105,7 +100,6 @@ var myChart = new Chart(ctx, {
         title: {
             display: true,
             text: 'Humeur des departements',
-
         },
         
         
@@ -129,6 +123,5 @@ var myChart = new Chart(ctx, {
 });
 {% endfor %}
         // }  
-
         </script>
 {% endblock %}

@@ -2,21 +2,21 @@
 
 class mainController extends Controller{
 
-public function index(){
+        public function index(){
+           
+        }
 
-}
+        /* page 404 */
+        public function notFound(){
+            $this->render("error404.twig");
+                
+        }
 
-/* page 404 */
-public function notFound(){
-    $this->render("views/error404.twig");
+        public function formLogin(){
 
-}
+            $this->render("login/index.twig");
 
-public function formLogin(){
-
-    $this->render("login/index.twig");
-
-}
+        }
 
 
 }
