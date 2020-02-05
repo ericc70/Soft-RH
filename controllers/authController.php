@@ -87,7 +87,10 @@ class authController extends Controller{
                     }
                     else{echo "tu as déja voté";}
         
-                    $this->logout();
+                  $this->logout('../login');
+                  // header('Location:  ../login');
+
+
                     break;  
 
                 }         
@@ -102,11 +105,12 @@ class authController extends Controller{
         }
 
 
-        public function logout(){
+        public function logout($redirection){
         //session destroy
         session_destroy();
 
-        header('Location:  login');
+        header('Location:'.  $redirection);
+        
         }
 
 public function verifLogin($name, $passwd){
