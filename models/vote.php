@@ -42,9 +42,9 @@ class vote extends Model
                 'departement_id' => $result['departement_id'],
                 // 'mois' => $result['mois'],
                 'nbrVotantParDepartement' => $result['nbrVotantParDepartement'],
-                'humeur1' => $humeur1,
-                'humeur2' => $humeur2,
-                'humeur3' => $humeur3
+                'humeur1' => [$humeur1],
+                'humeur2' => [$humeur2],
+                'humeur3' => [$humeur3]
             ];
 
             $retour = array_merge_recursive($ret1, $ret);
@@ -91,9 +91,9 @@ class vote extends Model
                 'departement_id' => $result['departement_id'],
               //  'mois' => $result['mois'],
                 'nbrVotantParDepartement' => $result['nbrVotantParDepartement'],
-                'humeur1' => $humeur1,
-                'humeur2' => $humeur2,
-                'humeur3' => $humeur3
+                'humeur1' => [$humeur1],
+                'humeur2' => [$humeur2],
+                'humeur3' => [$humeur3]
             ];
 
             $retour = array_merge_recursive($ret1, $ret);
@@ -142,9 +142,9 @@ class vote extends Model
                 'departement_id' => $result['departement_id'],
               //  'mois' => $result['mois'],
                 'nbrVotantParDepartement' => $result['nbrVotantParDepartement'],
-                'humeur1' => $humeur1,
-                'humeur2' => $humeur2,
-                'humeur3' => $humeur3
+                'humeur1' => [$humeur1],
+                'humeur2' => [$humeur2],
+                'humeur3' => [$humeur3]
             ];
 
             $retour = array_merge_recursive($ret1, $ret);

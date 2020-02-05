@@ -1,5 +1,123 @@
-<h1>Resultat par mois</h1>
+{% extends "base.twig" %}
+{% block content %}
+	{% if results %}
+{{ results| json_encode()}}
+{# {{ results.humeur1| json_encode()}} #}
 
-{% for result in results %}
-{{ results | json_encode()}}
-{% endfor %}
+{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class="col-6 ">
+				<div class="chart-container d-flex" style="position: relative; height:40vh; width:40vw">
+					{% for i in 1..4  %}
+						<canvas id="{{i}}"></canvas>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script>
+
+		{% for i in 1..3 %}
+console.log({{ i-1 }});
+
+
+// for(i=1;i<=2;i++){
+
+
+var ctx = document.getElementById({{ i }}).getContext('2d');
+
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: [`departement{{i}}`],
+datasets: [
+{
+label: 'heureux',
+data: [{{ results.humeur1[i-1] | json_encode() }}],
+
+borderColor: [
+
+'green',
+
+],
+pointBackgroundColor: [
+'green',
+
+
+// repère de valeur
+],
+borderWidth: [5,]
+
+
+}, {
+label: 'Fatigué',
+data: [{{ results.humeur2[i-1] | json_encode() }}],
+
+borderColor: [
+
+'yellow', "yellow", "yellow",
+
+],
+
+
+borderWidth: [4,]
+}, {
+label: 'Stressé',
+data: [{{ results.humeur3[i-1] | json_encode() }}],
+
+borderColor: [
+
+'red',
+
+],
+pointBackgroundColor: [
+'red',
+
+// repère de valeur
+],
+borderWidth: [3,]
+
+
+}
+]
+
+
+},
+
+options: {
+title: {
+display: true,
+text: 'Humeur des departements'
+
+},
+
+
+scales: {
+yAxes: [
+{
+stacked: false,
+
+ticks: {
+fontSize: 25,
+beginAtZero: true,
+type: 'myScale' // this is the same key that was passed to the registerScaleType function
+}
+}
+],
+xAxes: [
+{
+ticks: {
+fontSize: 25
+}
+}
+]
+}
+}
+});{% endfor %}
+// }
+	</script>
+{% endblock %}
