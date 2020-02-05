@@ -1,18 +1,6 @@
 <?php
  session_start();
- echo md5(123);
-// $uri=$_SERVER["REQUEST_URI"];
-// $controller='/';
 
-// if($uri !== "/"){
-
-//     $positionSlash=(strpos($uri,"/",1)=== false)? strlen($uri) : strpos($uri,"/",6);
-    
-
-//     $controller=substr( $uri, 0, $positionSlash);
-    
-
-// }
 
 // On génère une constante contenant le chemin vers la racine publique du projet
 define('ROOT', str_replace('index.php','',$_SERVER['SCRIPT_FILENAME']));
@@ -28,7 +16,10 @@ require_once 'controllers/historiqueController.php';
 $historique = new historiqueController;
 require_once 'controllers/voteController.php';
 $vote = new voteController;
-
+require_once 'controllers/authController.php';
+$auth = new authController;
+require_once 'controllers/mainController.php';
+$main = new mainController;
 
 // On sépare les paramètres et on les met dans le tableau $params
 if (isset($_GET['p'])){
@@ -41,40 +32,37 @@ $params = explode('/', $_GET['p']);
 
 
 switch ($params[0]) {
-         case '':
+        case '':
         case'/':
         //login 
   
-        $user->formLogin();
+        $main->formLogin();
 
         break;
     case "vote":
+        if($auth->islogin() && $auth->isUser()){
 
-
-        
-        if($user->islogin() && $user->isUser()){
-
-     //       $historique->hasVote($_SESSION['id'] ,$date);
-       // require_once 'controllers/voteController.php';
-        //include dans controleur historique ?
-       //    $vote = new voteController();
-       //   $vote->vote();
-       //     //view formulaire 
-       if (!isset($params[1])){
+        if (!isset($params[1])){
         $params[1] ='/';
     }
     switch($params[1]){
+        case '':
+    case '/':
+        header('Location: vote/index');
+    break;
+
         case 'index':
-            $date = date('Y-m-d');
-            $historique->hasVote($_SESSION['id'] ,$date);
+         
+            $historique->hasVote($_SESSION['id'] ,date('Y-m-d'));
            
         break;
         case 'add':
-            $vote->add();
-            //ajout du vote
-            //formulaire
+
+         $auth->ifUserPage('add');
+
         break;
-    default:
+       default:
+       $main->notFound();
     }
 
         }
@@ -82,69 +70,80 @@ switch ($params[0]) {
             echo "login ou acces interdit";
 
         }
+  break;
 
 
-        break;
-    case "admin":
+      
+  
+        case "admin":
       
 
-        if($user->islogin() && $user->isAdmin()){
+            if($user->islogin() && $user->isAdmin()){
 
 
-        //require_once 'controllers/voteController.php';
 
-       if (!isset($params[1])){
-           $params[1] ='/';
-       }
-
-
-        switch($params[1]){
-            case 'index':
-                $user->render("admin/index.twig",[
-                    'session' => $_SESSION,
-
-                 ]); 
-                
-            break;
-            case 'jour':
-
-            echo "resultat du jour";
-            break;
-            case 'mois':
-                echo "mois";
-            break;
-            default :
-                echo "selectionner mois ou jour";
-
-
+        if (!isset($params[1])){
+            $params[1] ='/';
         }
 
-        }
-        else{echo"login";}
+
+            switch($params[1]){
+                case 'index':
+                    $user->render("admin/index.twig",['session' => $_SESSION, ]); 
+                    
+                break;
+
+                case 'resultat':
+                    switch($params[2]){
+                    case 'day':
+                    $vote->getByDay(null);
+                    break;
+                    case 'month':
+                    $vote->getByMonth(null);
+                    break;
+                    case 'year':
+                    $vote->getByYear(null);
+                    break;
+                    default:
+                    $main->notFound();
+                    }
+
+                break;
+        
+            
+                default :
+                    echo "selectionner mois/ jour /annee";
 
 
-        //view resultat
-        break;
+            }
+
+            }
+            else{echo"login";}
+
+
+            //view resultat
+            break;
     case "logout":
-        $user->logout();
-        header('Location: login');
+        $auth->logout();
+     
     break;
 
     case "login":
      //  var_dump($_POST);
-       if(!isset($_POST['inptName']) && !isset($_POST['passwd'])){
-        $user->formLogin();
-}
-        if(isset($_POST['inptName']) && isset($_POST['passwd'])){
+//        if(!isset($_POST['inptName']) && !isset($_POST['passwd'])){
+//         $main->formLogin();
+// }
+//         if(isset($_POST['inptName']) && isset($_POST['passwd'])){
 
-            $name=strip_tags($_POST['inptName']);
-            $passwd = $_POST['passwd'];
-             $user->login($name,  $passwd );
-        }
-        
+//             $name=strip_tags($_POST['inptName']);
+//             $passwd = $_POST['passwd'];
+//              $user->login($name, $passwd);
+//         }
+if(isset($_POST['inptName']) && isset($_POST['passwd'])){
+        $auth->verifLogin( $_POST['inptName'] , $_POST['passwd']);
+} else {   $main->formLogin();}
     break;
     default:
        // require_once 'view/page404.html.php';
-       echo "404";
-        
+       $main->notFound();
 }
