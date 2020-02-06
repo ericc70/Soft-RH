@@ -121,6 +121,7 @@ class vote extends Model
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         $retour = [];
+
         foreach ($results as $result) {
             $ret1 = $retour;
             $ee = explode(',', $result['humeur']);
