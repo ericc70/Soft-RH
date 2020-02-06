@@ -1,6 +1,10 @@
 {% extends "base.twig" %}
 {% block content %}
-	
+	{% if results %}
+{{ results| json_encode()}}
+{# {{ results.humeur1| json_encode()}} #}
+
+{% endif %}
 	<div class="container">
 		<div class="row">
 			<div class="col-6 ">

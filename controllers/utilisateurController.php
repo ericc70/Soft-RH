@@ -3,7 +3,7 @@
 class utilisateurController extends Controller{
 
 
-    
+  /*  
     public function login($name, $passwd){
         
             $this->loadModel('utilisateur');
@@ -71,7 +71,7 @@ class utilisateurController extends Controller{
      
     }
 
-
+*/
 
 
 

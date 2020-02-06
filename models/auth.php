@@ -1,7 +1,6 @@
 <?php
 
-class utilisateur extends Model{
-  
+class auth extends Model{
   
     public function __construct(){
         $this->table ="utilisateur";
