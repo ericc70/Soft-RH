@@ -1,0 +1,32 @@
+.card{
+    background-color: #ffff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.font-size{
+    font-size: 1.3rem;
+}
+
+.active{
+    background-color: #28a745;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+.btn-40{
+    border-radius: 40px !important;
+}
+
+.bg-gradblue{
+    background: rgb(13,169,245);
+    background: linear-gradient(90deg, rgba(13,169,245,1) 0%, rgba(54,178,214,1) 48%, rgba(49,144,237,1) 100%);
+}
+
+.overflow-hidden{
+    overflow-y: hidden;
+}
+

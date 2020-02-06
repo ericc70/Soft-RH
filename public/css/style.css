@@ -26,6 +26,7 @@ button{
     text-shadow: -1px 0 white, 0 1px white, 5px 0 white, 5px -1px white;
     color: red;
 } */
+
 .bg-error{
     background-image:url('../medias/bg-error.png');
     background-size:cover;

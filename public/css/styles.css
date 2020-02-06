@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap");
+html:root {
+  --green: #13cd5e;
+  --red: #ff487c;
+  --yellow: #e1d623;
+  --blue: #3f8ae8;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.bg-connect {
+  background-image: url("../medias/bg-connect.png");
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+}
+
+.btn-color-green {
+  background-color: #11a666 !important;
+}
+.btn-color-green:hover {
+  background-color: #179760 !important;
+}
+
+.border-r-50 {
+  border-radius: 50px;
+}
+
+.border-black {
+  border: 1px solid black;
+}
+
+.card {
+  background-color: #ffff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.font-size {
+  font-size: 1.3rem;
+}
+
+.active {
+  background-color: #28a745;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.btn-40 {
+  border-radius: 40px !important;
+}
+
+.bg-gradblue {
+  background: #0da9f5;
+  background: linear-gradient(90deg, #0da9f5 0%, #36b2d6 48%, #3190ed 100%);
+}
+
+.overflow-hidden {
+  overflow-y: hidden;
+}
+
+.bg-error {
+  height: 100vh;
+  background-image: url("../medias/bg-error.png");
+  background-size: cover;
+  background-position: bottom;
+}
+
+/*# sourceMappingURL=styles.css.map */
