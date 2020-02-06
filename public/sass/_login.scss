@@ -1,0 +1,23 @@
+.bg-connect{
+    background-image:url('../medias/bg-connect.png');
+    background-size:cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+}
+
+.btn-color-green{
+    background-color: #11a666 !important;
+
+    &:hover{
+        background-color: #179760 !important;
+    }
+    
+}
+
+.border-r-50{
+    border-radius:50px;
+}
+
+.border-black{
+    border: 1px solid black;
+}

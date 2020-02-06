@@ -1,49 +1,66 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="fr">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link
+		rel="stylesheet" href="../public/css/styles.css">
+		<!-- favIcon -->
+		<link rel="icon" type="image/png" sizes="32x32" href="../public/medias/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="../public/medias/favicon-16x16.png">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="public/css/style.css">
 
-    <title>page de connection du site SOFRTH</title>
-  </head>
-  <body>
-   <div class="container-fluid bg-connect ">
- 
-   <div class="row mb-r  pt-5">
-    <div class="col-12">
-    <p class='text-center '><img src='../public/medias/logo.png' alt='image de softRH' width="400" class=" img-fluid" height="65"></p>
-    </div>
-   </div>
-   <div class="row">
-   <div class="col-12 text-center mb-4">
-        {% if erreur  %}
-       {{ erreur }}
-        {% endif %}
-      
-   </div>
-   </div>
-   <form method='post' action="/login" class="row flex-column offset-md-4 offset-lg-5">
-  <div class="form-group">
-    <label for="exampleInputEmail1" class="ml-3">Identifiant</label>
-    <input type="text" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4 " name="inptName" aria-describedby="emailHelp" placeholder="Enter votre nom">
+		<title>softRH | Login</title>
+	</head>
+	<body class="bg-connect">
 
- 
-    <label for="exampleInputPassword1" class="ml-3">Password</label>
-    <input type="password" class="form-control border-r-50 col-12 col-sm-12 col-md-6  col-lg-4" name="passwd" placeholder="Password">
-  </div>
+		<div id="header" class="container-fluid">
+			<div class="row mb-r  pt-5">
+				<div class="col-12">
+					<p class='text-center'><img src='../public/medias/logoBlack.png' alt='image de softRH' width="430" class="" height="85"></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center mb-4">
+					{% if erreur  %}
+						{{ erreur }}
+					{% endif %}
 
-  <button type="submit" class="btn btn-primary border-r-50 col-12 col-sm-12 col-md-6  col-lg-4">Submit</button>
-</form>
-</div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+				</div>
+			</div>
+
+			<!-- START LOGIN FORM -->
+			<div class="container-fluid">
+				<div class="container mt-5">
+					<div class="row justify-content-center pt-5">
+						<div class="col-9 col-sm-9 col-md-6 col-lg-6">
+							<form method='post' action="/login" class="">
+								<div class="form-group">
+									<label for="exampleInputEmail1" class="ml-3 font-weight-bold">Identifiant</label>
+									<input type="text" class="form-control border-r-50 border-black" name="inptName" aria-describedby="emailHelp" placeholder="">
+									<label for="exampleInputPassword1" class="ml-3 font-weight-bold pt-4">Mot de passe</label>
+									<input type="password" class="form-control border-r-50 border-black" name="passwd" placeholder="">
+								</div>
+								<div class="mt-3 text-center">
+									<button type="submit" class="btn btn-color-green border-r-50 font-weight-bold text-white">Connexion</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	</body>
 </html>
