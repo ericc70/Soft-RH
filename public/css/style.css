@@ -1,4 +1,6 @@
-
+body{
+    height: 100vh;
+}
 .border-r-50{
     border-radius:50px;
 }
@@ -10,13 +12,7 @@
 .mb-r{
     margin-bottom: 5rem;
 }
-.boutton-color{
-    background-color: #11a666;
-    
-}
-button{
-    background-color: #13a768 !important;
-}
+
 .montserrat{
     font-family: 'Montserrat', sans-serif;
 }
@@ -30,11 +26,53 @@ button{
     background-size:cover;
     background-position: bottom;
 }
+a{
+    color: white !important;
+}
+.nav-link:hover{
+    background-color:#2b3035;
+    transition: all 0.2s ease-in;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 575.98px) { 
     .img-responsive-sm{
         width: 100px;
         height:100px ;
+    }
+    .z-index{
+        z-index: 9999;
+    }
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+    .absolute-position{
+        position: absolute;
+    }
+    .transition{
+        transition:all  0.5s;
     }
     .bg-connect{
         background-image:url('../medias/bg-connect.png');
@@ -51,8 +89,19 @@ button{
 
  }
  @media (min-width: 576px) and (max-width: 767.98px) { 
-
-  
+    .transition{
+        transition:all  0.5s;
+    }
+    .z-index{
+        z-index: 9999;
+    }
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+    .absolute-position{
+        position: absolute;
+    }
      .mb-r{
          margin-bottom: 0;
      }
@@ -75,7 +124,10 @@ button{
         background-position: 0vh;
         height: 100vh;
     }
-  
+    .image-fluid{
+        width: 250px;
+        height: 50px;
+    }
     }
     @media (min-width: 834px) and (max-width:1112px){
         .bg-error{

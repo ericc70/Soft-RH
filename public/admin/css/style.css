@@ -96,6 +96,10 @@ a, a:hover, a:focus {
 .bg-theme04 {
   background-color: #ed5565;
 }
+.image-fluid{
+    width: 100px;
+    height: 100px;
+}
 /*Theme Buttons*/
 
 .btn-theme {
