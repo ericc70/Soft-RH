@@ -9,7 +9,7 @@ abstract class Model{
     private $host="localhost";
     private $db_name="softrh";
     private $username="root";
-    private $password="toor";
+    private $password="online@2017";
 
 
     //propriete contenant la connexion

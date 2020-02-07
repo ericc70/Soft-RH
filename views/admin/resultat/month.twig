@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-6 ">
-				<div class="chart-container d-flex" style="position: relative; height:40vh; width:40vw">
+				<div class="chart-container" style="position: relative; height:40vh; width:40vw">
 					{% for i in 1..4  %}
 						<canvas id="{{i}}"></canvas>
 					{% endfor %}
@@ -32,20 +32,21 @@ var ctx = document.getElementById({{ i }}).getContext('2d');
 
 var myChart = new Chart(ctx, {
 type: 'bar',
+
 data: {
 labels: [`departement{{i}}`],
 datasets: [
 {
-label: 'heureux',
+label: 'Heureux',
 data: [{{ results.humeur1[i-1] | json_encode() }}],
 
 borderColor: [
 
-'green',
+'rgba(19, 205, 94, 1)',
 
 ],
 pointBackgroundColor: [
-'green',
+'rgba(19, 205, 94, 1)',
 
 
 // repère de valeur
@@ -59,7 +60,7 @@ data: [{{ results.humeur2[i-1] | json_encode() }}],
 
 borderColor: [
 
-'yellow', "yellow", "yellow",
+'rgba(225, 214, 35, 1)',
 
 ],
 
@@ -71,11 +72,11 @@ data: [{{ results.humeur3[i-1] | json_encode() }}],
 
 borderColor: [
 
-'red',
+'rgba(255, 72, 124, 1)',
 
 ],
 pointBackgroundColor: [
-'red',
+'rgba(255, 72, 124, 1)',
 
 // repère de valeur
 ],
