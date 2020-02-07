@@ -29,3 +29,39 @@
         background-color: #ff0048 !important;
     }
 }
+
+@media (max-width: 575.98px) { 
+    .index-z{
+        z-index: 9999;
+    }
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+    .transition{
+        transition:all  0.5s;
+    }   
+    .absolute-position{
+        position: absolute;
+    }
+
+ }
+
+ @media (min-width: 576px) and (max-width: 767.98px) { 
+    
+    .index-z{
+        z-index: 9999;
+    }
+
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+
+    .absolute-position{
+        position: absolute;
+    }
+
+
+  }
+
