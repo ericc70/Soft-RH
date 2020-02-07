@@ -1,96 +1,130 @@
 {% extends "base.twig" %}
 {% block content %}
-{% if results %}
-{{ results| json_encode()}}
-{% endif %}
 
+    <span class="burger d-flex justify-content-end"><i class="fas fa-2x p-3 d-flex d-sm-flex d-md-none d-lg-none fa-bars"></i></span>
 
-
-
-		<div class="chart-container" style="position: relative; height:40vh; width:40vw">
+		<div class="chart-container container-fluid d-flex flex-wrap  " style="position: relative; ">
 			 {% for i in 1..4  %}
-                <canvas id="{{i}}"></canvas>
-             {% endfor %}
+                <canvas class="col-12 col-sm-12 col-md-8 col-lg-5 mt-5  " id="{{i}}"></canvas>
+                
+         
+            {% endfor %}
     
 		</div>
 
 
+    	
 
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script>
          
+    
+        {% for i in 0..3 %}
+      {% if results.departement_id[i] == i+1 %}
+   console.log(    {{ i  }}        );
+      {% endif %}
+       
+              
+        var ctx = document.getElementById({{i+1}}).getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [`departement{{i+1}}`],
+        datasets: [
+            {
+            label: 'heureux',
+            data: [{{ results.humeur | json_encode()}}],
          
-        {% for i in 1..4  %}
-        
-   
+            borderColor: [
+                
+                'green',
+              
+            ],
+            pointBackgroundColor:[
+                'green',
+                
+              
+                //repère de valeur
+            ],
+            borderWidth:[
+                5,
+            ],
+         
       
-   
-        var ctx = document.getElementById({{i}}).getContext('2d');
-        
-
-         
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [`departement{{i}}`],
-                datasets: [
-                    {
-                    label: 'heureux',
-                    
-                    data: [{{ results.humeur1[i-1] | json_encode()}}],
-                    borderColor: ['green',],
-                    backgroundColor: ['green',],
-                    pointBackgroundColor:['green',],
-                    borderWidth:[5,],
-                    
-                },
-                {
-                    label: 'Fatigué',
-                    data:  [{{ results.humeur2[i-1] | json_encode()}}
-                    ],
+          },{
+            label: 'Fatigué',
+            data:  [{{ results.humeur2[0] | json_encode()}}
+            ],
+           
+            borderColor: [
                 
-                    borderColor: ['yellow',],
-                    backgroundColor: ['yellow',],
-                    borderWidth:[ 4,],
-                },
-                {
-                    label: 'Stressé',
-                    data: [{{ results.humeur3[i-1] | json_encode()}}],
+                'yellow',
+                "yellow",
+                "yellow",
+              
+            ],
+          
+          
+          
+            borderWidth:[
+                4,
+            ],
+        },{
+                label: 'Stressé',
+                data: [{{ results.humeur[i] | json_encode()}}],
+               
+                borderColor: [
                     
-                    borderColor: ['red',],
-                    pointBackgroundColor:['red',],
-                    backgroundColor: ['red',],
-                    borderWidth:[3,],
-                
-                }
+                    'red',
+                  
                 ],
-            },
-            
-            options: {
-                title: {
-                    display: true,
-                    text: 'Humeur des departements',
-                },
+                pointBackgroundColor:[
+                    'red',
+                    
+                    //repère de valeur
+                ],
+                borderWidth:[
+                    3,
+                ],
+        
+          }
+        ],
+     
+          
+          
+          
+    },
+    
+    options: {
+    legend: {
+            display: false,
+        },
+      
+        
+        
+        scales: {
+            yAxes: [{
+                stacked: false,
                 
-                
-                scales: {
-                    yAxes: [{
-                        stacked: false,
-                        
-                        ticks: {
-                            fontSize: 25, 
-                            beginAtZero: true,
-                            type: 'myScale' // this is the same key that was passed to the registerScaleType function
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontSize: 25
-                        }
-                    }]
+                ticks: {
+                   
+                    beginAtZero: true,
+                    type: 'myScale' ,
+                     precision:0,
+                     stepSize:1,
+                     beginAtZero:true,
                 }
-            }
-        });
+            }],
+            xAxes: [{
+                ticks: {
+                   
+                   
+                }
+            }]
+        }
+    }
+});
 {% endfor %}
+       
         </script>
 {% endblock %}
