@@ -47,6 +47,8 @@ switch ($params[0]) {
     }
     switch($params[1]){
         case '':
+            header('Location: /vote/index');
+        break;
     case '/':
         header('Location: vote/index');
     break;
@@ -67,8 +69,8 @@ switch ($params[0]) {
 
         }
         else{
-            echo "login ou acces interdit";
-
+            //echo "login ou acces interdit";
+            header('Location: ../login');
         }
   break;
 
@@ -82,19 +84,47 @@ switch ($params[0]) {
 
 
 
-        if (!isset($params[1])){
-            $params[1] ='/';
-        }
-
+            if (!isset($params[1])){
+                $params[1] ='/';
+            }
+            
 
             switch($params[1]){
+                case'':
+                    echo"position1";
+                  header('Location: /admin/resultat/day' );
+                     break;
+
+                      case'/':
+                          echo "position2";
+                         header('Location: admin/resultat/day' );
+                       break;
+                  
+
                 case 'index':
                     $user->render("admin/index.twig",['session' => $_SESSION, ]); 
                     header('Location: resultat/day' );
                 break;
 
                 case 'resultat':
+                    if (!isset($params[2])){
+                        $params[2] ='/';}
                     switch($params[2]){
+                    
+                        case'':
+                          echo"position1";
+                                header('Location: /admin/resultat/day' );
+                           break;
+
+                            case'/':
+                                echo "position2";
+                               header('Location: resultat/day' );
+                             break;
+                        
+
+
+
+
                     case 'day':
                     $vote->getByDay(null);
                     break;
@@ -105,6 +135,7 @@ switch ($params[0]) {
                     $vote->getByYear(null);
                     break;
                     default:
+                  
                     $main->notFound();
                     }
 
@@ -112,13 +143,14 @@ switch ($params[0]) {
         
             
                 default :
-                    echo "selectionner mois/ jour /annee";
-
-
+                  
+                    $main->notFound();
             }
 
             }
-            else{echo"login";}
+            else{echo"login";
+                header('Location: ../login');
+            }
 
 
             //view resultat

@@ -1,16 +1,17 @@
 {% extends "base.twig" %}
 {% block content %}
 
-    <span class="burger d-flex justify-content-end"><i class="fas fa-2x p-3 d-flex d-sm-flex d-md-none d-lg-none fa-bars"></i></span>
+    <span class="burger d-flex w-100 justify-content-end"><i class="fas fa-2x p-3 d-flex d-sm-flex d-md-none d-lg-none fa-bars"></i></span>
 
-		<div class="chart-container container-fluid d-flex flex-wrap  " style="position: relative; ">
+		
 			 {% for i in 1..4  %}
-                <canvas class="col-12 col-sm-12 col-md-8 col-lg-5 mt-5  " id="{{i}}"></canvas>
+             <div class="chart-container container-fluid d-flex flex-wrap col-12 col-sm-12 col-md-6 col-lg-6 mt-5 " style="position: relative;">
+                <canvas class="  " id="{{i}}"></canvas>
                 
-         
+         </div>
             {% endfor %}
     
-		</div>
+		
 
 
     	
@@ -18,113 +19,72 @@
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script>
          
-    
-        {% for i in 0..3 %}
-      {% if results.departement_id[i] == i+1 %}
-   console.log(    {{ i  }}        );
-      {% endif %}
-       
-              
-        var ctx = document.getElementById({{i+1}}).getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [`departement{{i+1}}`],
-        datasets: [
-            {
-            label: 'heureux',
-            data: [{{ results.humeur | json_encode()}}],
          
-            borderColor: [
-                
-                'green',
-              
-            ],
-            pointBackgroundColor:[
-                'green',
-                
-              
-                //repère de valeur
-            ],
-            borderWidth:[
-                5,
-            ],
+        {% for i in 1..4  %}
+        
+   
+      
+   
+        var ctx = document.getElementById({{i}}).getContext('2d');
+        
          
-      
-          },{
-            label: 'Fatigué',
-            data:  [{{ results.humeur2[0] | json_encode()}}
-            ],
-           
-            borderColor: [
-                
-                'yellow',
-                "yellow",
-                "yellow",
-              
-            ],
-          
-          
-          
-            borderWidth:[
-                4,
-            ],
-        },{
-                label: 'Stressé',
-                data: [{{ results.humeur[i] | json_encode()}}],
-               
-                borderColor: [
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [`departement{{i}}`],
+                datasets: [
+                    {
+                    label: 'heureux',
                     
-                    'red',
-                  
-                ],
-                pointBackgroundColor:[
-                    'red',
+                    data: [{{ results.humeur1[i-1] | json_encode()}}],
+                    borderColor: ['green',],
+                    backgroundColor: ['green',],
+                    pointBackgroundColor:['green',],
+                    borderWidth:[5,],
                     
-                    //repère de valeur
-                ],
-                borderWidth:[
-                    3,
-                ],
-        
-          }
-        ],
-     
-          
-          
-          
-    },
-    
-    options: {
-    legend: {
-            display: false,
-        },
-      
-        
-        
-        scales: {
-            yAxes: [{
-                stacked: false,
+                },
+                {
+                    label: 'Fatigué',
+                    data:  [{{ results.humeur2[i-1] | json_encode()}}
+                    ],
                 
-                ticks: {
-                   
-                    beginAtZero: true,
-                    type: 'myScale' ,
-                     precision:0,
-                     stepSize:1,
-                     beginAtZero:true,
+                    borderColor: ['yellow',],
+                    backgroundColor: ['yellow',],
+                    borderWidth:[ 4,],
+                },
+                {
+                    label: 'Stressé',
+                    data: [{{ results.humeur3[i-1] | json_encode()}}],
+                    
+                    borderColor: ['red',],
+                    pointBackgroundColor:['red',],
+                    backgroundColor: ['red',],
+                    borderWidth:[3,],
+                
                 }
-            }],
-            xAxes: [{
-                ticks: {
-                   
-                   
+                ],
+            },
+            
+            options: {
+                
+                legend: false,
+                
+                scales: {
+                    yAxes: [{
+                        stacked: false,
+                        
+                        ticks: {
+                            beginAtZero: true,
+                            type: 'myScale' // this is the same key that was passed to the registerScaleType function
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                        }
+                    }]
                 }
-            }]
-        }
-    }
-});
+            }
+        });
 {% endfor %}
-       
         </script>
 {% endblock %}
