@@ -111,7 +111,7 @@ class vote extends Model
     {
         if ($year == null ) {
             
-            $y = date('Y-m');
+            $y = date('Y');
             $like ='%';
             $year=$y.$like;
         }
@@ -153,7 +153,7 @@ class vote extends Model
 
         $json = json_encode($retour);
         //    var_dump($result);
-
+        return $retour;
 
         //var_dump($json);
     }

@@ -6,7 +6,7 @@
 		
 			 {% for i in 1..4  %}
              <div class="chart-container container-fluid d-flex flex-wrap col-12 col-sm-12 col-md-6 col-lg-6 mt-5 " style="position: relative;">
-                <canvas class="  " id="{{i}}"></canvas>
+                <canvas id="{{i}}"></canvas>
                 
          </div>
             {% endfor %}
@@ -31,16 +31,18 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: [`departement{{i}}`],
+                
+                labels: [`Département{{i}}`],
                 datasets: [
                     {
-                    label: 'heureux',
+                    label: 'Heureux',
                     
                     data: [{{ results.humeur1[i-1] | json_encode()}}],
-                    borderColor: ['green',],
-                    backgroundColor: ['green',],
-                    pointBackgroundColor:['green',],
-                    borderWidth:[5,],
+                    borderColor: ['rgba(19, 205, 94, 1)',],
+                    backgroundColor: ['rgba(19, 205, 94, 1)',],
+                    pointBackgroundColor:['rgba(19, 205, 94, 1)',],
+                    borderWidth:[4,],
+
                     
                 },
                 {
@@ -48,18 +50,19 @@
                     data:  [{{ results.humeur2[i-1] | json_encode()}}
                     ],
                 
-                    borderColor: ['yellow',],
-                    backgroundColor: ['yellow',],
+                    borderColor: ['rgba(225, 214, 35, 1)',],
+                    backgroundColor: ['rgba(225, 214, 35, 1)',],
                     borderWidth:[ 4,],
+
                 },
                 {
                     label: 'Stressé',
                     data: [{{ results.humeur3[i-1] | json_encode()}}],
                     
-                    borderColor: ['red',],
-                    pointBackgroundColor:['red',],
-                    backgroundColor: ['red',],
-                    borderWidth:[3,],
+                    borderColor: ['rgba(255, 72, 124, 1)',],
+                    pointBackgroundColor:['rgba(255, 72, 124, 1)',],
+                    backgroundColor: ['rgba(255, 72, 124, 1)',],
+                    borderWidth:[4,],
                 
                 }
                 ],
@@ -72,6 +75,7 @@
                 scales: {
                     yAxes: [{
                         stacked: false,
+                        
                         
                         ticks: {
                             beginAtZero: true,
