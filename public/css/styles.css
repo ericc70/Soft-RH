@@ -72,3 +72,17 @@ body {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+
+@media (max-width: 575.98px) { 
+
+  .overflow-hidden{
+
+    overflow: visible !important;
+  }
+ 
+  label > p > img{
+    height: 90px;
+    width: 90px;
+  }
+ }
