@@ -1,40 +1,20 @@
 
-.border-r-50{
-    border-radius:50px;
-}
-.bg-connect{
-    background-image:url('../medias/bg-connect.png');
-    background-size:cover;
-    height: 100vh;
-}
-.mb-r{
-    margin-bottom: 5rem;
-}
-.boutton-color{
-    background-color: #11a666;
-    
-}
-button{
-    background-color: #13a768 !important;
-}
-.montserrat{
-    font-family: 'Montserrat', sans-serif;
-}
-/* .text-shadow{
-    text-shadow: -1px 0 white, 0 1px white, 5px 0 white, 5px -1px white;
-    color: red;
-} */
 
-.bg-error{
-    background-image:url('../medias/bg-error.png');
-    background-size:cover;
-    background-position: bottom;
-}
 
 @media (max-width: 575.98px) { 
     .img-responsive-sm{
         width: 100px;
         height:100px ;
+    }
+    .index-z{
+        z-index: 9999;
+    }
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+    .transition{
+        transition:all  0.5s;
     }
     .bg-connect{
         background-image:url('../medias/bg-connect.png');
@@ -51,37 +31,22 @@ button{
 
  }
  @media (min-width: 576px) and (max-width: 767.98px) { 
+    
+    .index-z{
+        z-index: 9999;
+    }
 
-  
-     .mb-r{
-         margin-bottom: 0;
-     }
+    .left-100{
+        transform:translateX(-100%);
+      
+    }
+
   }
 @media (min-width: 768px) and (max-width: 991.98px) { 
 
-    .mb-r{
-        margin-bottom: 7rem;
-    }
    }
 
 
 
 
 
-   @media (min-width: 768px) and (max-width: 1024px) { 
-    .bg-error{
-        background-image:url('../medias/bg-error.png');
-        background-size:cover;
-        background-position: 0vh;
-        height: 100vh;
-    }
-  
-    }
-    @media (min-width: 834px) and (max-width:1112px){
-        .bg-error{
-            background-image:url('../medias/bg-error.png');
-            background-size:cover;
-            background-position: 0vw;
-            height: 100vh;
-        }
-    }
