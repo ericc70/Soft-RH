@@ -15,7 +15,7 @@ class vote extends Model
         if ($day == null) {
             $day = date('Y-m-d');
         }
-        $sql = "SELECT month(date), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date =:day GROUP BY departement_id";
+        $sql = 'SELECT d.id as departement_id , count(case when v.date= :day then 1 end) as nbrVotantParDepartement, GROUP_CONCAT( CASE WHEN v.date = :day THEN v.humeur_id END ) AS humeur from departement d left join vote v on v.departement_id=d.id group by d.nom order by d.id asc';
         $query =  $this->_connexion->prepare($sql);
         $query->bindParam(':day', $day, PDO::PARAM_STR);
         $query->execute();
@@ -64,7 +64,7 @@ class vote extends Model
             $like ='%';
             $month=$m.$like;
         }
-        $sql = "SELECT MONTH(DATE) AS mois, COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :month GROUP BY departement_id";
+        $sql = "SELECT d.id as departement_id , count(case when v.date like :month then 1 end) as nbrVotantParDepartement, GROUP_CONCAT( CASE WHEN v.date like :month THEN v.humeur_id END ) AS humeur from departement d left join vote v on v.departement_id=d.id group by d.nom order by d.id asc";
         $query =  $this->_connexion->prepare($sql);
         $query->bindParam(':month', $month,  PDO::PARAM_STR);
         $query->execute();
@@ -111,16 +111,17 @@ class vote extends Model
     {
         if ($year == null ) {
             
-            $y = date('Y-m');
+            $y = date('Y');
             $like ='%';
             $year=$y.$like;
         }
-        $sql = "SELECT substr(date,1,4), COUNT(departement_id) AS nbrVotantParDepartement, GROUP_CONCAT(humeur_id) AS humeur, departement_id FROM vote WHERE date like :year GROUP BY departement_id";
+        $sql = "SELECT d.id as departement_id , count(case when v.date like :year then 1 end) as nbrVotantParDepartement, GROUP_CONCAT( CASE WHEN v.date like :year THEN v.humeur_id END ) AS humeur from departement d left join vote v on v.departement_id=d.id group by d.nom order by d.id asc";
         $query =  $this->_connexion->prepare($sql);
         $query->bindParam(':year', $year, PDO::PARAM_STR);
         $query->execute();
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         $retour = [];
+
         foreach ($results as $result) {
             $ret1 = $retour;
             $ee = explode(',', $result['humeur']);
@@ -152,7 +153,7 @@ class vote extends Model
 
         $json = json_encode($retour);
         //    var_dump($result);
-
+        return $retour;
 
         //var_dump($json);
     }

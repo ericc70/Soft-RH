@@ -18,7 +18,7 @@ class authController extends Controller{
 
     
         if ($auth == false){
-             $err = "Login ou mot de pass invalide";
+             $err = "Login ou mot de passe invalide";
                $this->render("login/index.twig",[
 
                 'erreur' => $err
