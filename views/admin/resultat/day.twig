@@ -2,7 +2,9 @@
 {% block content %}
 
     <span class="burger d-flex justify-content-end"><i class="fas fa-2x p-3 d-flex d-sm-flex d-md-none d-lg-none fa-bars"></i></span>
-
+    <div class="col-12 text-center mt-3">
+    <span class="displayDate font-weight-bold text-uppercase"></span>
+    </div>
 		<div class="chart-container container-fluid d-flex flex-wrap  " style="position: relative; ">
 			 {% for i in 1..4  %}
                 <canvas class="col-12 col-sm-12 col-md-8 col-lg-5 mt-5  " id="{{i}}"></canvas>
@@ -41,8 +43,8 @@ var myChart = new Chart(ctx, {
                 'green',
               
             ],
-            pointBackgroundColor:[
-                'green',
+            backgroundColor:[
+                '#13cd5e',
                 
               
                 //repère de valeur
@@ -64,7 +66,11 @@ var myChart = new Chart(ctx, {
                 "yellow",
               
             ],
-          
+           backgroundColor:[
+                    'e1d623',
+                    
+                    //repère de valeur
+                ],
           
           
             borderWidth:[
@@ -79,8 +85,8 @@ var myChart = new Chart(ctx, {
                     'red',
                   
                 ],
-                pointBackgroundColor:[
-                    'red',
+                backgroundColor:[
+                    '#ff487c',
                     
                     //repère de valeur
                 ],
@@ -111,8 +117,6 @@ var myChart = new Chart(ctx, {
                    
                     beginAtZero: true,
                     type: 'myScale' ,
-                     precision:0,
-                     stepSize:1,
                      beginAtZero:true,
                 }
             }],
