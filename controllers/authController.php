@@ -78,6 +78,25 @@ class authController extends Controller{
                     require_once 'controllers/voteController.php';
                     $histo = new historiqueController; 
                     $vote1 = new voteController;
+                    //verifier $_POST['humeur'];
+                    if (isset($_POST['humeur'])){
+
+                        $humeur =(int)$_POST['humeur'];
+                     
+                     
+                        if( $humeur != 1 && $humeur  != 2 && $humeur  != 3 )
+                        {
+
+                            
+                           // echo "Erreur lors du traitement ";
+                          
+                           $this->render("vote/vote-bad.twig");
+                            return false;
+                           // header('Location: user');
+                        } 
+                      
+                    }
+                    
                     if($histo->hasVote($_SESSION['id'], date('Y-m-d'), false) == 0){
                         $vote1->add(date('Y-m-d'), $_SESSION['dpt'] , $_POST['humeur']);
                         $histo->add($_SESSION['id'], date('Y-m-d'));
