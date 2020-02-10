@@ -101,13 +101,15 @@ class authController extends Controller{
                         $vote1->add(date('Y-m-d'), $_SESSION['dpt'] , $_POST['humeur']);
                         $histo->add($_SESSION['id'], date('Y-m-d'));
 
-                        echo "Merci pour votre vote, vous allez être deconnecté !";
+                       // echo "Merci pour votre vote, vous allez être deconnecté !";
                 
                     }
                     else{echo "tu as déja voté";}
         
-                  $this->logout('../login');
-                  // header('Location:  ../login');
+                    $this->render("vote/vote-valid.twig");
+                    //sleep(5);
+                    //$this->logout('../login');
+                    // header('Location:  ../login');
 
 
                     break;  
