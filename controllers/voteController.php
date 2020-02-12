@@ -39,8 +39,10 @@ class voteController extends Controller
   }
 
 
+
   public function add($day , $departement, $humeur)
   {
+  
 
     $this->loadModel('vote');
     $vote = $this->vote->add($day , $departement, $humeur);

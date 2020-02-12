@@ -4,53 +4,55 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>dashboard softrh</title>
+		<title>softrh | Dashboard</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" href="/public/css/style.css">
+		<link rel="stylesheet" href="/public/css/styles.css">
+		<link rel="icon" type="image/png" sizes="32x32" href="/public/medias/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/public/medias/favicon-16x16.png">
+
 
 
 	</head>
 	<body>
-		<div class="container-fluid ">
+		<div class="container-fluid">
 			<div class="row vh-100 align-items-center  ">
 
-				<nav class="col-12  col-sm-12  col-md-4 col-lg-2 z-index left-100 absolute-position d-md-block  sidebar  vh-100   bg-dark  pt-3 pt-lg-5">
+				<nav class="col-12  col-sm-12  col-md-4 col-lg-2 index-z left-100 absolute-position d-md-block  sidebar  vh-100   bg-nav  pt-3 pt-lg-5">
 					<p class="mb-lg-5 pb-5 justify-content-between  d-flex ">
-						<img src="/public/medias/logo-dashboard.png" class="img-fluid  ">
+						<img src="/public/medias/logo-dashboard.png" class="img-fluid">
 						<i class="fas p-3 text-white fermer d-flex d-sm-flex d-md-none d-lg-none  fa-times fa-2x"></i>
 					</p>
 
-					<div class="sidebar-sticky ">
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-								<p class="m-0 text-left">Humeur du jour</p>
-									
-								
+					<div class="sidebar-sticky text-center ">
+						<ul class="nav flex-column d-flex align-items-center">
+							<li class="nav-item py-2">
+								<a class="nav-link" href="day">
+								<p class="m-0 text-left text-uppercase font-weight-bold h5">Humeur Journalière</p>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-								<p class="m-0 text-left">Humeur du mois</p>
-									
+							<li class="nav-item py-2">
+								<a class="nav-link" href="month">
+								<p class="m-0 text-left text-uppercase font-weight-bold h5">Humeur Mensuel</p>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-								<p class="m-0 text-left">Humeur de l'année</p>
+							<li class="nav-item py-2">
+								<a class="nav-link" href="year">
+								<p class="m-0 text-left text-uppercase font-weight-bold h5">Humeur de l'Année</p>
 									
 								</a>
 							</li>
-							<li class="nav-item my-5">
+							<li class="nav-item my-5 py-5">
 									<a href="../../logout">
-										<input type="button" value="Déconnexion" class="ml-3 btn btn-danger">
+										<button type="button" class="ml-3 btn bg-btn-red border-r-50 text-white">Déconnexion</button>
 									</a>
 							</li>
 
 						</div>
 					</nav>
-					<main class="col-12 col-sm-12 col-md-8  col-lg-10 d-flex flex-wrap vh-100 overflow-auto"> {% block content %}{% endblock %}
-						</main>
+					<main class="col-12 col-sm-12 col-md-8  col-lg-10 d-flex flex-wrap vh-100 overflow-auto">
+					{% block content %}{% endblock %}
+			
+					</main>
 
 					</div>
 				</div>
@@ -61,6 +63,7 @@
 				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 				<script src="/public/js/nav.js"></script>
 				<script src="https://kit.fontawesome.com/22059af8fc.js" crossorigin="anonymous"></script>
+				<script src="/public/js/hours.js"></script>
 			</body>
 		</body>
 	</html>
